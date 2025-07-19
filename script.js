@@ -399,3 +399,280 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initial display of products
     displayProducts();
 });
+document.addEventListener('DOMContentLoaded', () => {
+    const productGrid = document.getElementById('product-grid');
+    const cartCountSpan = document.getElementById('cart-count');
+    const categoryFilter = document.getElementById('category-filter');
+
+    // Modal elements
+    const productModal = document.getElementById('product-modal');
+    const closeModalButton = productModal.querySelector('.close-button');
+    const modalImg = document.getElementById('modal-img');
+    const modalTitle = document.getElementById('modal-title');
+    const modalDescription = document.getElementById('modal-description');
+    const modalCategory = document.getElementById('modal-category');
+    const modalPrice = document.getElementById('modal-price');
+    const sizeSelect = document.getElementById('size-select');
+    const addToCartBtn = document.getElementById('add-to-cart-btn');
+
+    let products = [
+        {
+            id: 1,
+            name: "फ्री फायर बैटल टी-शर्ट",
+            description: "प्रीमियम कॉटन से बनी आरामदायक टी-शर्ट, गेमर्स के लिए बेहतरीन।",
+            price: 899, // Unisex
+            image: "https://via.placeholder.com/300x300/FF5733/FFFFFF?text=FreeFire",
+            category: "unisex",
+            sizes: ["S", "M", "L", "XL"]
+        },
+        {
+            id: 2,
+            name: "कॉफ़ी लवर टी-शर्ट",
+            description: "कॉफ़ी प्रेमियों के लिए स्टाइलिश डिज़ाइन।",
+            price: 899, // Unisex
+            image: "https://via.placeholder.com/300x300/A0522D/FFFFFF?text=Coffee",
+            category: "unisex",
+            sizes: ["S", "M", "L", "XL"]
+        },
+        {
+            id: 3,
+            name: "बटरफ्लाई ड्रीम्स टी-शर्ट",
+            description: "ख़ूबसूरत बटरफ्लाई डिज़ाइन वाली टी-शर्ट।",
+            price: 899, // Women
+            image: "https://via.placeholder.com/300x300/87CEEB/FFFFFF?text=Butterfly",
+            category: "women",
+            sizes: ["S", "M", "L"]
+        },
+        {
+            id: 4,
+            name: "ट्रैवल एंथुसिऐस्ट टी-शर्ट",
+            description: "घूमने के शौकीनों के लिए एकदम सही।",
+            price: 899, // Unisex
+            image: "https://via.placeholder.com/300x300/32CD32/FFFFFF?text=Travel",
+            category: "unisex",
+            sizes: ["M", "L", "XL"]
+        },
+        {
+            id: 5,
+            name: "फनी कैट टी-शर्ट",
+            description: "क्यूट और फनी बिल्ली का डिज़ाइन।",
+            price: 599, // Kids
+            image: "https://via.placeholder.com/300x300/FFD700/000000?text=FunnyCat",
+            category: "kids",
+            sizes: ["S", "M", "L"]
+        },
+        {
+            id: 6,
+            name: "एब्स्ट्रैक्ट आर्ट टी-शर्ट",
+            description: "आधुनिक कला से प्रेरित अद्वितीय डिज़ाइन।",
+            price: 899, // Unisex
+            image: "https://via.placeholder.com/300x300/6A5ACD/FFFFFF?text=AbstractArt",
+            category: "unisex",
+            sizes: ["L", "XL", "XXL"]
+        },
+        {
+            id: 7,
+            name: "योग और मेडिटेशन टी-शर्ट",
+            description: "शांत और आरामदायक, योग सत्रों के लिए।",
+            price: 899, // Women
+            image: "https://via.placeholder.com/300x300/98FB98/000000?text=Yoga",
+            category: "women",
+            sizes: ["S", "M", "L"]
+        },
+        {
+            id: 8,
+            name: "साइंस गीक टी-शर्ट",
+            description: "विज्ञान प्रेमियों के लिए कूल ग्राफिक टी।",
+            price: 899, // Men
+            image: "https://via.placeholder.com/300x300/4682B4/FFFFFF?text=Science",
+            category: "men",
+            sizes: ["M", "L", "XL"]
+        },
+        {
+            id: 9,
+            name: "माउंटेन एडवेंचर टी-शर्ट",
+            description: "पहाड़ों और एडवेंचर के शौकीनों के लिए।",
+            price: 899, // Unisex
+            image: "https://via.placeholder.com/300x300/8B4513/FFFFFF?text=Mountain",
+            category: "unisex",
+            sizes: ["M", "L", "XL", "XXL"]
+        },
+        {
+            id: 10,
+            name: "पॉजिटिव वाइब्स टी-शर्ट",
+            description: "सकारात्मक ऊर्जा के लिए प्रेरणादायक कोट।",
+            price: 899, // Women
+            image: "https://via.placeholder.com/300x300/FFC0CB/000000?text=PositiveVibes",
+            category: "women",
+            sizes: ["S", "M", "L"]
+        },
+        {
+            id: 11,
+            name: "स्पेस एक्सप्लोरर टी-शर्ट",
+            description: "ब्रह्मांड के प्रेमियों के लिए अद्वितीय डिज़ाइन।",
+            price: 599, // Kids
+            image: "https://via.placeholder.com/300x300/4B0082/FFFFFF?text=Space",
+            category: "kids",
+            sizes: ["S", "M"]
+        },
+        {
+            id: 12,
+            name: "गेमर ज़ोन टी-शर्ट",
+            description: "गेमर्स के लिए विशेष डिज़ाइन, उच्च गुणवत्ता।",
+            price: 899, // Men
+            image: "https://via.placeholder.com/300x300/00CED1/FFFFFF?text=Gamer",
+            category: "men",
+            sizes: ["M", "L", "XL"]
+        },
+        {
+            id: 13,
+            name: "सॉफ्ट पेस्टल टी-शर्ट",
+            description: "हल्के रंगों में आरामदायक और स्टाइलिश।",
+            price: 899, // Women
+            image: "https://via.placeholder.com/300x300/E6E6FA/000000?text=Pastel",
+            category: "women",
+            sizes: ["S", "M", "L"]
+        },
+        {
+            id: 14,
+            name: "म्यूजिक लवर टी-शर्ट",
+            description: "संगीत प्रेमियों के लिए एक आदर्श विकल्प।",
+            price: 899, // Unisex
+            image: "https://via.placeholder.com/300x300/DA70D6/FFFFFF?text=Music",
+            category: "unisex",
+            sizes: ["S", "M", "L", "XL"]
+        },
+        {
+            id: 15,
+            name: "रोबोटिक किड्स टी-शर्ट",
+            description: "बच्चों के लिए रोबोट थीम वाली मज़ेदार टी-शर्ट।",
+            price: 599, // Kids
+            image: "https://via.placeholder.com/300x300/7B68EE/FFFFFF?text=RobotKid",
+            category: "kids",
+            sizes: ["XS", "S"]
+        },
+        {
+            id: 16,
+            name: "पैटर्न एनिमल टी-शर्ट",
+            description: "अद्वितीय पशु पैटर्न के साथ स्टाइलिश टी-शर्ट।",
+            price: 899, // Unisex
+            image: "https://via.placeholder.com/300x300/F0E68C/000000?text=AnimalPattern",
+            category: "unisex",
+            sizes: ["M", "L"]
+        },
+        {
+            id: 17,
+            name: "सफेद बेसिक टी-शर्ट",
+            description: "रोजमर्रा के उपयोग के लिए क्लासिक सफेद टी-शर्ट।",
+            price: 899, // Unisex
+            image: "https://via.placeholder.com/300x300/FFFFFF/000000?text=WhiteBasic",
+            category: "unisex",
+            sizes: ["S", "M", "L", "XL", "XXL"]
+        },
+        {
+            id: 18,
+            name: "रेड बेसिक टी-शर्ट",
+            description: "कैजुअल लुक के लिए जीवंत लाल टी-शर्ट।",
+            price: 899, // Unisex
+            image: "https://via.placeholder.com/300x300/FF0000/FFFFFF?text=RedBasic",
+            category: "unisex",
+            sizes: ["S", "M", "L", "XL", "XXL"]
+        }
+    ];
+
+    let cart = [];
+
+    function renderProducts(filteredProducts = products) {
+        productGrid.innerHTML = ''; // Clear existing products
+        // Sort products by price in ascending order before rendering
+        filteredProducts.sort((a, b) => a.price - b.price); 
+
+        filteredProducts.forEach(product => {
+            const productCard = document.createElement('div');
+            productCard.classList.add('product-card');
+            productCard.innerHTML = `
+                <img src="${product.image}" alt="${product.name}">
+                <h3>${product.name}</h3>
+                <p>₹${product.price}</p>
+                <button class="btn view-details" data-id="${product.id}">विवरण देखें</button>
+            `;
+            productGrid.appendChild(productCard);
+        });
+    }
+
+    function updateCartCount() {
+        cartCountSpan.textContent = cart.length;
+    }
+
+    // Event listener for category filter
+    categoryFilter.addEventListener('change', (event) => {
+        const selectedCategory = event.target.value;
+        if (selectedCategory === 'all') {
+            renderProducts();
+        } else {
+            const filtered = products.filter(product => product.category === selectedCategory);
+            renderProducts(filtered);
+        }
+    });
+
+    // Event listener for product card clicks (for modal)
+    productGrid.addEventListener('click', (event) => {
+        if (event.target.classList.contains('view-details')) {
+            const productId = parseInt(event.target.dataset.id);
+            const product = products.find(p => p.id === productId);
+            if (product) {
+                modalImg.src = product.image;
+                modalImg.alt = product.name;
+                modalTitle.textContent = product.name;
+                modalDescription.textContent = product.description;
+                modalCategory.textContent = product.category;
+                modalPrice.textContent = `₹${product.price}`;
+
+                sizeSelect.innerHTML = ''; // Clear previous sizes
+                product.sizes.forEach(size => {
+                    const option = document.createElement('option');
+                    option.value = size;
+                    option.textContent = size;
+                    sizeSelect.appendChild(option);
+                });
+
+                // Set current product ID to add to cart button
+                addToCartBtn.dataset.productId = product.id;
+
+                productModal.style.display = 'flex'; // Show modal
+            }
+        }
+    });
+
+    // Close modal when close button is clicked
+    closeModalButton.addEventListener('click', () => {
+        productModal.style.display = 'none';
+    });
+
+    // Close modal when clicking outside the modal content
+    window.addEventListener('click', (event) => {
+        if (event.target === productModal) {
+            productModal.style.display = 'none';
+        }
+    });
+
+    // Add to cart functionality
+    addToCartBtn.addEventListener('click', () => {
+        const productId = parseInt(addToCartBtn.dataset.productId);
+        const selectedSize = sizeSelect.value;
+        const productToAdd = products.find(p => p.id === productId);
+
+        if (productToAdd && selectedSize) {
+            cart.push({ ...productToAdd, selectedSize });
+            updateCartCount();
+            alert(`${productToAdd.name} (${selectedSize} size) कार्ट में जोड़ा गया!`);
+            productModal.style.display = 'none'; // Close modal after adding
+        } else {
+            alert('कृपया साइज़ चुनें।');
+        }
+    });
+
+    // Initial render of products
+    renderProducts();
+    updateCartCount();
+});
