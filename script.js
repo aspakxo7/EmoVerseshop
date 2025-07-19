@@ -971,3 +971,30 @@ document.addEventListener('DOMContentLoaded', () => {
     renderProducts();
     updateCartCount();
 });
+// Cart count system
+let cartCount = 0;
+const cartCountElement = document.getElementById('cart-count');
+const viewButtons = document.querySelectorAll('.product button');
+
+viewButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        cartCount++;
+        cartCountElement.innerText = cartCount;
+    });
+});
+
+// Future feature: Modal system
+// const modal = document.getElementById("product-modal");
+// const closeModal = document.querySelector(".close-button");
+// const modalImg = document.getElementById("modal-img");
+
+// closeModal.addEventListener("click", () => {
+//     modal.style.display = "none";
+// });
+
+// document.querySelectorAll(".product img").forEach(img => {
+//     img.addEventListener("click", () => {
+//         modalImg.src = img.src;
+//         modal.style.display = "block";
+//     });
+// });
