@@ -1,86 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EmoVerse - अपनी भावनाएं पहनें</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EmoVerse - T-Shirts & Hoodies</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1>EmoVerse</h1>
-            <nav>
-                <ul>
-                    <li><a href="#">होम</a></li>
-                    <li><a href="#products">प्रोडक्ट्स</a></li>
-                    <li><a href="#">हमारे बारे में</a></li>
-                    <li><a href="#">संपर्क</a></li>
-                    <li><a href="#" class="cart-icon"><i class="fas fa-shopping-cart"></i> कार्ट (<span id="cart-count">0</span>)</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+  <header>
+    <div class="logo">EmoVerse</div>
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#cart">Cart</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <main>
-        <section id="hero">
-            <div class="container">
-                <h2>अपनी भावनाएं पहनें</h2>
-                <p>अद्वितीय डिज़ाइनों के साथ टी-शर्ट का बेहतरीन संग्रह।</p>
-                <a href="#products" class="btn">अभी खरीदारी करें</a>
-            </div>
-        </section>
+  <section class="hero" id="home">
+    <h1>Shop Emo T-Shirts<br>& Hoodies</h1>
+    <a href="#products" class="btn">Order Now</a>
+  </section>
 
-        <section id="products">
-            <div class="container">
-                <h2>हमारे प्रोडक्ट्स</h2>
-                <div class="filter-controls">
-                    <label for="category-filter">केटेगरी द्वारा फ़िल्टर करें:</label>
-                    <select id="category-filter">
-                        <option value="all">सभी</option>
-                        <option value="men">पुरुषों के लिए</option>
-                        <option value="women">महिलाओं के लिए</option>
-                        <option value="kids">बच्चों के लिए</option>
-                        <option value="unisex">यूनिसेक्स</option>
-                    </select>
-                </div>
-                <div class="product-grid" id="product-grid">
-                    </div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 EmoVerse. सभी अधिकार सुरक्षित।</p>
-        </div>
-    </footer>
-
-    <div id="product-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-button">&times;</span>
-            <div class="modal-body">
-                <img id="modal-img" src="" alt="Product Image">
-                <div class="modal-info">
-                    <h3 id="modal-title"></h3>
-                    <p id="modal-description"></p>
-                    <p class="modal-category">केटेगरी: <span id="modal-category"></span></p>
-                    <div class="size-selection">
-                        <label for="size-select">साइज़ चुनें:</label>
-                        <select id="size-select">
-                            </select>
-                    </div>
-                    <p class="modal-price" id="modal-price"></p>
-                    <div class="modal-actions">
-                        <button id="add-to-cart-btn" class="btn">कार्ट में जोड़ें</button>
-                        <button id="buy-now-btn" class="btn btn-secondary">अभी खरीदें (डेमो)</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <section class="products" id="products">
+    <div class="product">
+      <img src="images/hoodie1.jpg" alt="Emo Hoodie">
+      <h3>Emo Hoodie</h3>
+      <p>₹799</p>
+      <button>View</button>
     </div>
 
-    <script src="script.js"></script>
+    <div class="product">
+      <img src="images/tshirt1.jpg" alt="Emo Band T-Shirt">
+      <h3>Emo Band T-Shirt</h3>
+      <p>₹499</p>
+      <button>View</button>
+    </div>
+
+    <div class="product">
+      <img src="images/tshirt2.jpg" alt="Sad Face T-Shirt">
+      <h3>Sad Face T-Shirt</h3>
+      <p>₹599</p>
+      <button>View</button>
+    </div>
+
+    <div class="product">
+      <img src="images/hoodie2.jpg" alt="Skull Hoodie">
+      <h3>Skull Hoodie</h3>
+      <p>₹899</p>
+      <button>View</button>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 EmoVerse. All rights reserved.</p>
+  </footer>
 </body>
 </html>
