@@ -92,3 +92,91 @@ nav button {
     padding: 5px 10px;
     cursor: pointer;
 }
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+header {
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+nav {
+    margin-top: 10px;
+}
+
+nav span {
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+nav button {
+    background-color: #000;
+    color: #fff;
+    border: none;
+    padding: 5px 15px;
+    cursor: pointer;
+}
+
+.gallery {
+    padding: 20px;
+}
+
+.gallery ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.gallery li {
+    margin: 5px 0;
+    font-size: 16px;
+}
+
+.product-display {
+    padding: 20px;
+}
+
+.product-display h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.product-list {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.product-item {
+    background-color: #fff;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 200px;
+    text-align: left;
+}
+
+.product-item p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.product-item button {
+    background-color: #000;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    display: block;
+    margin-top: 10px;
+}
